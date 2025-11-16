@@ -46,13 +46,13 @@
 ```yaml
 ---
 name: kb-system
-description: Knowledge Base 시스템 관리자
+description: 데이터베이스 시스템 관리자
 allowed-tools: kb_search, kb_document_create, kb_upload
 ---
 
 # KB System Skill
 
-이 Skill은 Knowledge Base를 관리합니다...
+이 Skill은 데이터베이스를 관리합니다...
 ```
 
 ---
@@ -142,7 +142,7 @@ allowed-tools: kb_search, kb_document_create, kb_upload
 - **OS**: Linux, macOS, WSL2
 
 **선택** (기능에 따라):
-- **PostgreSQL**: 14.0+ (Knowledge Base 사용 시)
+- **PostgreSQL**: 14.0+ (PostgreSQL MCP 사용 시)
 - **Ollama**: (AI 기능 사용 시)
   - BGE-M3 모델 (임베딩)
   - Gemma3 모델 (텍스트 생성)
@@ -336,7 +336,6 @@ vim ~/lazy-mcp/config.json
 
 **A**: 기본으로 **3개 MCP 서버**가 포함됩니다.
 
-1. **Codex-Qwen-Gemini MCP**
    - 3개 AI CLI 통합 (Codex, Qwen, Gemini)
    - 50+ 도구
    - 세션 관리
@@ -446,13 +445,6 @@ vim ~/lazy-mcp/config.json
 ```json
 {
   "mcpServers": {
-    "knowledge-base": {
-      "env": {
-        "DB_HOST": "your-db-host",
-        "DB_PORT": "5432",
-        "DB_NAME": "your-db-name",
-        "DB_USER": "your-db-user",
-        "DB_PASSWORD": "${DB_PASSWORD}"
       }
     }
   }
@@ -464,7 +456,6 @@ vim ~/lazy-mcp/config.json
 psql -h your-db-host -U your-db-user -d your-db-name -c "SELECT 1;"
 ```
 
-**참고**: [DEPLOYMENT_GUIDE.md - MCP 서버](DEPLOYMENT_GUIDE.md#43-knowledge-base-mcp-설치)
 
 ---
 
@@ -493,7 +484,7 @@ allowed-tools: kb_search, kb_document_create  ← MCP 도구 호출
 ---
 
 # KB System Skill
-이 Skill은 Knowledge Base를 관리합니다...  ← 가이드라인
+이 Skill은 데이터베이스를 관리합니다...  ← 가이드라인
 ```
 
 ---
@@ -622,7 +613,7 @@ Claude가 자동으로:
 ```yaml
 ---
 name: integrated-workflow
-description: Knowledge Base + SSH 통합 워크플로우
+description: Database + SSH 통합 워크플로우
 allowed-tools: kb_search, kb_document_create, ssh_connect, ssh_execute
 ---
 
@@ -757,7 +748,6 @@ tail -f ~/.claude/logs/main.log \
 # 3. 도구 계층 구조 재생성
 cd ~/lazy-mcp
 ./build/structure_generator \
-  --server "knowledge-base" \
   --config ./config.json \
   --output ./testdata/mcp_hierarchy
 

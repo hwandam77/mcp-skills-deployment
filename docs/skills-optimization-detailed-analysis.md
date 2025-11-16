@@ -271,7 +271,7 @@ Qwen은 코드 생성/리뷰/리팩토링이 모두 연관된 작업이므로, �
 3. kb-system을 kb-system-enhanced로 업그레이드
 
 **예상 시간**: 30분
-**효과**: Knowledge Base 기능 100% 활용
+**효과**: MCP 기능 100% 활용
 
 ### Option 2: 우선순위만 적용
 1. kb-ai-assistant Skill 생성 (가장 임팩트 큼)
@@ -313,4 +313,4 @@ Qwen은 코드 생성/리뷰/리팩토링이 모두 연관된 작업이므로, �
 ---
 
 **작성일**: 2025-11-15
-**결론**: Knowledge Base에서 17개 도구가 Skills로 분리되지 않았으며, 특히 AI Tools와 Knowledge Graph는 고가치 기능임
+**결론**: MCP 서버에서 17개 도구가 Skills로 분리되지 않았으며, 특히 AI Tools와 Knowledge Graph는 고가치 기능임

@@ -158,12 +158,11 @@ cd ~/lazy-mcp
 
 # 특정 서버
 ./build/structure_generator \
-  --server "knowledge-base" \
   --config ./config.json \
   --output ./testdata/mcp_hierarchy
 
 # 모든 서버
-for server in codex-qwen-gemini knowledge-base ssh context7; do
+for server in filesystem github ssh; do
   ./build/structure_generator \
     --server "$server" \
     --config ./config.json \
@@ -333,7 +332,7 @@ pkill -f "claude-code"
 
 ---
 
-### Knowledge Base 연결 오류
+### MCP 서버 연결 오류
 
 ```bash
 # 1. PostgreSQL 연결 확인
@@ -392,7 +391,6 @@ rm -rf ~/.claude/temp/
 | **Lazy MCP** | `~/lazy-mcp/` | Lazy MCP 설치 디렉토리 |
 | **도구 계층 구조** | `~/lazy-mcp/testdata/mcp_hierarchy/` | MCP 도구 계층 구조 |
 | **KB MCP** | `~/service/MCP/Knowledge_Base-MCP/` | MCP 서버 서버 |
-| **Codex-Qwen-Gemini** | `~/service/MCP/codex-qwen-gemini-mcp/` | Codex-Qwen-Gemini MCP 서버 |
 
 ---
 
@@ -413,13 +411,6 @@ rm -rf ~/.claude/temp/
 ```json
 {
   "mcpServers": {
-    "knowledge-base": {
-      "env": {
-        "DB_HOST": "your-db-host",
-        "DB_PORT": "5432",
-        "DB_NAME": "your-db-name",
-        "DB_USER": "your-db-user",
-        "DB_PASSWORD": "${DB_PASSWORD}"
       }
     },
     "slack": {

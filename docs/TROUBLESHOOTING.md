@@ -182,7 +182,6 @@ sudo systemctl status postgresql
 psql -h localhost -U your_db_user -d knowledge_base_db
 
 # 3. Python 환경 확인
-cd ~/mcp-servers/knowledge-base-mcp
 source .venv/bin/activate
 python3 -c "import asyncpg; print('OK')"
 
@@ -211,7 +210,6 @@ EOF
 
 **원인 3: Python 의존성 없음**
 ```bash
-cd ~/mcp-servers/knowledge-base-mcp
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -494,7 +492,6 @@ ERROR: schema "kb" does not exist
 **해결**:
 ```bash
 # 스키마 생성 스크립트 실행
-cd ~/mcp-servers/knowledge-base-mcp
 source .venv/bin/activate
 python3 scripts/init_db.py
 
@@ -580,7 +577,6 @@ tail -f ~/.config/claude-code/logs/main.log
 
 ```bash
 # Python 로그 활성화
-cd ~/mcp-servers/knowledge-base-mcp
 source .venv/bin/activate
 
 # DEBUG 모드로 실행

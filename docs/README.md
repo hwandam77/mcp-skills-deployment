@@ -288,7 +288,7 @@ MCP/
 
 - **RAM**: 8GB 이상
 - **Disk**: 5GB 여유 공간
-- **PostgreSQL**: 14.0 이상 (Knowledge Base 사용 시)
+- **PostgreSQL**: 14.0 이상 (PostgreSQL MCP 사용 시)
 - **Ollama**: BGE-M3, Gemma3 모델 (AI 기능 사용 시)
 
 ### 확인 방법
