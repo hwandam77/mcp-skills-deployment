@@ -1,0 +1,81 @@
+{
+  "mcpProxy": {
+    "hierarchyPath": "/path/to/lazy-mcp/testdata/mcp_hierarchy",
+    "options": {
+      "lazyLoad": true
+    }
+  },
+  "mcpServers": {
+    "codex-qwen-gemini": {
+      "transportType": "stdio",
+      "command": "node",
+      "args": [
+        "/path/to/codex-qwen-gemini-mcp/src/server-stdio.js"
+      ],
+      "options": {
+        "lazyLoad": false,
+        "preload": true
+      }
+    },
+    "knowledge-base": {
+      "transportType": "stdio",
+      "command": "node",
+      "args": [
+        "/path/to/Knowledge_Base-MCP/local_mcp/kb-mcp-wrapper.js"
+      ],
+      "env": {
+        "DB_HOST": "${DB_HOST}",
+        "DB_PORT": "${DB_PORT}",
+        "DB_NAME": "${DB_NAME}",
+        "DB_USER": "${DB_USER}",
+        "DB_PASSWORD": "${DB_PASSWORD}",
+        "OLLAMA_HOST": "${OLLAMA_HOST}",
+        "EMBEDDING_MODEL": "${EMBEDDING_MODEL}",
+        "LLM_MODEL": "${LLM_MODEL}"
+      },
+      "options": {
+        "lazyLoad": false,
+        "preload": true
+      }
+    },
+    "context7": {
+      "transportType": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@context7/mcp-server"
+      ],
+      "options": {
+        "lazyLoad": false,
+        "preload": true
+      }
+    },
+    "ssh": {
+      "transportType": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-ssh"
+      ],
+      "options": {
+        "lazyLoad": false,
+        "preload": true
+      }
+    },
+    "github": {
+      "transportType": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "options": {
+        "lazyLoad": true,
+        "preload": false
+      }
+    }
+  }
+}
