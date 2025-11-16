@@ -115,18 +115,15 @@ make build
     }
   },
   "mcpServers": {
-    "codex-qwen-gemini": {
       "transportType": "stdio",
       "command": "node",
       "args": [
-        "/path/to/MCP/codex-qwen-gemini-mcp/src/server-stdio.js"
       ],
       "env": {},
       "options": {
         "lazyLoad": true
       }
     },
-    "knowledge-base": {
       "transportType": "stdio",
       "command": "node",
       "args": [
@@ -237,7 +234,6 @@ Claude Code 시작
   ↓
 Lazy MCP 프록시만 로드 (~2k 토큰)
   ↓
-codex, knowledge-base, context7, ssh는 자동 로드 (필수 도구)
   ↓
 초기 토큰: ~19k (기존: 77k)
 ```
@@ -302,7 +298,6 @@ Grafana MCP 서버 자동 활성화
 ```json
 {
   "mcpServers": {
-    "codex-qwen-gemini": {
       "options": {
         "lazyLoad": false,  // 항상 로드
         "preload": true
@@ -355,7 +350,6 @@ Grafana MCP 서버 자동 활성화
 tail -f ~/service/MCP/lazy-mcp/logs/proxy.log
 
 # MCP 서버 직접 테스트
-node /path/to/MCP/codex-qwen-gemini-mcp/src/server-stdio.js
 ```
 
 ### 문제 2: 계층 구조 생성 실패

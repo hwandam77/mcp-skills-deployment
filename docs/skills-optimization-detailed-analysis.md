@@ -19,7 +19,7 @@
 
 ## 🔍 세분화 가능 영역 분석
 
-### 1. Knowledge Base MCP - 17개 미사용 도구 발견!
+### 1. MCP 서버 - 17개 미사용 도구 발견!
 
 #### 현재 kb-system이 사용하는 도구 (7개)
 ```yaml
@@ -136,7 +136,6 @@ User: "WebSocket에 대한 모든 정보 검색 (문서 + 지식 그래프)"
 
 ---
 
-### 2. Codex-Qwen-Gemini MCP - 이미 잘 분리됨 ✅
 
 현재 Skills:
 - **codex-architect**: Codex CLI 전체 (3개 도구)
@@ -292,7 +291,7 @@ Qwen은 코드 생성/리뷰/리팩토링이 모두 연관된 작업이므로, �
 **추천: Option 1 (전체 적용)**
 
 이유:
-1. Knowledge Base MCP가 24개 도구를 제공하는데 7개만 사용 중 (29%)
+1. MCP 서버가 24개 도구를 제공하는데 7개만 사용 중 (29%)
 2. 특히 AI 도구 (시맨틱 검색, RAG, 요약)는 매우 유용함
 3. Knowledge Graph는 복잡한 프로젝트 관계 관리에 필수
 4. 구현 난이도 낮음 (기존 패턴 재사용)
@@ -314,5 +313,4 @@ Qwen은 코드 생성/리뷰/리팩토링이 모두 연관된 작업이므로, �
 ---
 
 **작성일**: 2025-11-15
-**분석 대상**: Knowledge Base MCP (24개 도구), Codex-Qwen-Gemini MCP (20+ 도구)
 **결론**: Knowledge Base에서 17개 도구가 Skills로 분리되지 않았으며, 특히 AI Tools와 Knowledge Graph는 고가치 기능임

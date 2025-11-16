@@ -341,7 +341,7 @@ vim ~/lazy-mcp/config.json
    - 50+ 도구
    - 세션 관리
 
-2. **Knowledge Base MCP**
+2. **MCP 서버**
    - PostgreSQL + pgvector 기반
    - 24개 도구 (문서, KG, AI)
    - BGE-M3, Gemma3 AI 지원
@@ -433,7 +433,7 @@ tail -f ~/lazy-mcp/logs/mcp-proxy.log
 
 ---
 
-### Q19: Knowledge Base MCP는 어떻게 설정하나요?
+### Q19: MCP 서버는 어떻게 설정하나요?
 
 **A**: **PostgreSQL 연결 정보** 설정이 필요합니다.
 
@@ -464,7 +464,7 @@ vim ~/lazy-mcp/config.json
 psql -h your-db-host -U your-db-user -d your-db-name -c "SELECT 1;"
 ```
 
-**참고**: [DEPLOYMENT_GUIDE.md - Knowledge Base MCP](DEPLOYMENT_GUIDE.md#43-knowledge-base-mcp-설치)
+**참고**: [DEPLOYMENT_GUIDE.md - MCP 서버](DEPLOYMENT_GUIDE.md#43-knowledge-base-mcp-설치)
 
 ---
 
@@ -721,7 +721,7 @@ tail -f ~/.claude/logs/main.log
 tail -f ~/lazy-mcp/logs/mcp-proxy.log
 ```
 
-**3. Knowledge Base MCP 로그**:
+**3. MCP 서버 로그**:
 ```bash
 tail -f ~/service/MCP/Knowledge_Base-MCP/logs/*.log
 ```

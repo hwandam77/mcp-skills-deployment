@@ -391,7 +391,7 @@ rm -rf ~/.claude/temp/
 | **Skills** | `~/.claude/skills/` | Skills 저장소 |
 | **Lazy MCP** | `~/lazy-mcp/` | Lazy MCP 설치 디렉토리 |
 | **도구 계층 구조** | `~/lazy-mcp/testdata/mcp_hierarchy/` | MCP 도구 계층 구조 |
-| **KB MCP** | `~/service/MCP/Knowledge_Base-MCP/` | Knowledge Base MCP 서버 |
+| **KB MCP** | `~/service/MCP/Knowledge_Base-MCP/` | MCP 서버 서버 |
 | **Codex-Qwen-Gemini** | `~/service/MCP/codex-qwen-gemini-mcp/` | Codex-Qwen-Gemini MCP 서버 |
 
 ---
@@ -434,7 +434,7 @@ rm -rf ~/.claude/temp/
 
 ---
 
-### Knowledge Base MCP (.env)
+### MCP 서버 (.env)
 
 ```bash
 # 데이터베이스
@@ -530,7 +530,7 @@ git pull origin main
 # npm 패키지 업데이트
 npm update -g @modelcontextprotocol/server-filesystem
 
-# Knowledge Base MCP 업데이트
+# MCP 서버 업데이트
 cd ~/service/MCP/Knowledge_Base-MCP
 git pull origin main
 source .venv-311/bin/activate

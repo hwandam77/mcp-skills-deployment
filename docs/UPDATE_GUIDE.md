@@ -107,7 +107,7 @@ npm install -g @modelcontextprotocol/server-filesystem@1.0.0
 
 ---
 
-### Knowledge Base MCP
+### MCP 서버
 
 ```bash
 cd ~/service/MCP/Knowledge_Base-MCP
@@ -131,10 +131,8 @@ make test
 
 ---
 
-### Codex-Qwen-Gemini MCP
 
 ```bash
-cd ~/service/MCP/codex-qwen-gemini-mcp
 
 # 1. 업데이트
 git pull origin main

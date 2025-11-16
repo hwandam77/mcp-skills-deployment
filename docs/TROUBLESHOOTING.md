@@ -166,7 +166,7 @@ cat ~/lazy-mcp/config.json | python3 -m json.tool
 vim ~/lazy-mcp/config.json
 ```
 
-### 2.2 Knowledge Base MCP 연결 타임아웃
+### 2.2 MCP 서버 연결 타임아웃
 
 **증상**:
 ```
@@ -576,7 +576,7 @@ chmod -R 755 ~/.claude/skills/
 tail -f ~/.config/claude-code/logs/main.log
 ```
 
-### 8.3 Knowledge Base MCP 로그
+### 8.3 MCP 서버 로그
 
 ```bash
 # Python 로그 활성화

@@ -35,13 +35,12 @@
 # 필수
 - Claude Code (최신 버전)
 - Node.js 20+ (MCP 서버용)
-- Python 3.11+ (Knowledge Base MCP용)
 - Git 2.30+
 - Go 1.24+ (Lazy MCP 빌드용)
 
 # 선택 (AI 기능 사용 시)
 - Ollama (BGE-M3, Gemma3 모델)
-- PostgreSQL 14+ with pgvector (Knowledge Base용)
+- PostgreSQL 14+ (선택, PostgreSQL MCP 사용시)
 ```
 
 #### 디스크 공간
@@ -149,19 +148,15 @@ cat > ~/lazy-mcp/config.json << 'EOF'
     }
   },
   "mcpServers": {
-    "codex-qwen-gemini": {
       "transportType": "stdio",
       "command": "node",
-      "args": ["DEPLOY_HOME/mcp-servers/codex-qwen-gemini-mcp/src/server-stdio.js"],
       "options": {
         "lazyLoad": false,
         "preload": true
       }
     },
-    "knowledge-base": {
       "transportType": "stdio",
       "command": "node",
-      "args": ["DEPLOY_HOME/mcp-servers/knowledge-base-mcp/local_mcp/kb-mcp-wrapper.js"],
       "options": {
         "lazyLoad": false,
         "preload": true
@@ -227,14 +222,11 @@ mkdir -p ~/mcp-servers
 cd ~/mcp-servers
 ```
 
-### 4.2 Codex-Qwen-Gemini MCP 설치
 
 ```bash
 cd ~/mcp-servers
 
 # 소스 다운로드
-git clone https://github.com/YOUR_REPO/codex-qwen-gemini-mcp.git
-cd codex-qwen-gemini-mcp
 
 # 의존성 설치
 npm install
@@ -273,14 +265,11 @@ qwen auth login
 gemini auth login
 ```
 
-### 4.3 Knowledge Base MCP 설치
 
 ```bash
 cd ~/mcp-servers
 
 # 소스 다운로드
-git clone https://github.com/YOUR_REPO/knowledge-base-mcp.git
-cd knowledge-base-mcp
 
 # Python 가상환경 생성
 python3.11 -m venv .venv
@@ -374,7 +363,6 @@ chmod +x mcp-ssh
 cd ~/lazy-mcp
 
 # 각 MCP 서버의 도구 계층 생성
-for server in codex-qwen-gemini knowledge-base ssh; do
   echo "Generating hierarchy for $server..."
   timeout 30s ./build/structure_generator \
     --server "$server" \
@@ -385,8 +373,6 @@ done
 # 생성된 파일 확인
 ls -lh testdata/mcp_hierarchy/
 # root.json
-# codex-qwen-gemini/
-# knowledge-base/
 # ssh/
 ```
 
@@ -512,8 +498,6 @@ Claude Code에서:
 ```
 Connected MCP Servers:
 ✅ lazy-mcp-proxy
-   - codex-qwen-gemini (preloaded)
-   - knowledge-base (preloaded)
    - context7 (preloaded)
    - ssh (preloaded)
    - github (lazy-load)
@@ -619,11 +603,9 @@ ls -lh ~/mcp-servers/
 ~/lazy-mcp/build/mcp-proxy --config ~/lazy-mcp/config.json
 ```
 
-### 7.2 Knowledge Base MCP 실패
 
 **증상**:
 ```
-knowledge-base: Connection timeout
 ```
 
 **해결**:
@@ -640,7 +622,6 @@ psql -h localhost -U your_db_user -d knowledge_base_db
 
 3. Python 환경 확인
 ```bash
-cd ~/mcp-servers/knowledge-base-mcp
 source .venv/bin/activate
 python3 -c "import asyncpg; print('OK')"
 ```
@@ -707,7 +688,6 @@ vim ~/lazy-mcp/config.json
 ```bash
 cd ~/lazy-mcp
 rm -rf testdata/mcp_hierarchy/*
-./build/structure_generator --server "knowledge-base" --config ./config.json --output ./testdata/mcp_hierarchy
 ```
 
 ---
@@ -761,7 +741,6 @@ vim ~/lazy-mcp/config.json
 ssh -L 5432:localhost:5432 user@remote-db-server
 
 # config/.env 수정
-vim ~/mcp-servers/knowledge-base-mcp/config/.env
 
 # 설정:
 DB_HOST=localhost
