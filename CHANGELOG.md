@@ -102,47 +102,42 @@
 
 ---
 
-#### 2. Skills 완전 구현 (10개)
+#### 2. Skills 완전 구현 (8개)
 
 **Skills 목록**:
 
-| Skill | 도구 수 | 설명 |
-|-------|---------|------|
-| **kb-system** | 11 | 문서 CRUD, 검색, 대용량 문서 지원 |
-| **kb-knowledge-graph** | 6 | 엔티티, 관계, 지식 그래프 관리 |
-| **kb-ai-assistant** | 7 | 시맨틱 검색, RAG Q&A, 자동 태깅 |
-| **ssh-operator** | 4 | 원격 서버 관리 |
-| **github-manager** | 8 | PR, 이슈, 워크플로우 관리 |
-| **context7-docs** | 2 | 라이브러리 문서 검색 |
-| **codex-architect** | - | 알고리즘 설계 (Codex CLI) |
-| **qwen-code-engineer** | - | 코드 생성 및 리팩토링 (Qwen CLI) |
-| **gemini-content-creator** | - | 콘텐츠 생성 (Gemini CLI) |
-| **sequential-thinker** | - | 단계적 사고 지원 |
+| Skill | 설명 |
+|-------|------|
+| **filesystem-manager** | 파일 및 디렉토리 관리, 검색, 읽기/쓰기 |
+| **ssh-operator** | 원격 서버 연결 및 명령 실행 |
+| **github-manager** | PR, 이슈, 워크플로우 관리 |
+| **database-assistant** | PostgreSQL 쿼리 및 데이터베이스 관리 |
+| **slack-communicator** | 메시지 전송 및 채널 관리 |
+| **context7-docs** | 라이브러리 문서 검색 및 참조 |
+| **web-researcher** | 웹 검색 및 정보 수집 (Brave Search) |
+| **sequential-thinker** | 복잡한 문제의 단계적 사고 지원 |
 
-**KB 도구 활용도**:
-- Before: 29% (7/24 도구)
-- After: 100% (24/24 도구)
-- 개선: +71%p
+**특징**:
+- MCP 도구 활용 기반 Skills
+- 도메인별 전문화
+- 확장 가능한 구조
 
 ---
 
-#### 3. MCP 서버 (3개)
+#### 3. 공식 MCP 서버 지원
 
-**포함된 MCP 서버**:
+**지원되는 MCP 서버**:
 
-1. **Codex-Qwen-Gemini MCP**
-   - 3개 AI CLI 통합
-   - 50+ 도구
-   - 세션 관리
+- **파일 시스템**: 로컬 파일 및 디렉토리 접근
+- **GitHub**: PR, 이슈, 워크플로우 관리
+- **SSH**: 원격 서버 관리
+- **Slack**: 메시지 및 채널 관리
+- **PostgreSQL**: 데이터베이스 쿼리
+- **Brave Search**: 웹 검색
+- **Context7**: 라이브러리 문서
+- **커스텀 MCP**: 자체 서버 통합 가능
 
-2. **Knowledge Base MCP**
-   - PostgreSQL + pgvector
-   - 24개 도구 (문서 + KG + AI)
-   - BGE-M3, Gemma3 AI 지원
-
-3. **SSH MCP**
-   - 원격 서버 관리
-   - 4개 도구
+**추가 방법**: `./scripts/add-mcp.sh` 스크립트로 5분 내 추가
 
 ---
 
@@ -272,11 +267,10 @@
 - scripts/package-skills.sh
 - scripts/uninstall.sh
 
-### Skills (10개)
-- kb-system, kb-knowledge-graph, kb-ai-assistant
-- ssh-operator, github-manager, context7-docs
-- codex-architect, qwen-code-engineer, gemini-content-creator
-- sequential-thinker
+### Skills (8개)
+- filesystem-manager, ssh-operator, github-manager
+- database-assistant, slack-communicator, context7-docs
+- web-researcher, sequential-thinker
 
 ---
 
