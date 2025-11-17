@@ -14,6 +14,7 @@
 6. [데이터베이스 문제](#6-데이터베이스-문제)
 7. [권한 문제](#7-권한-문제)
 8. [로그 확인](#8-로그-확인)
+9. [Tool Not Found 오류](#9-tool-not-found-오류)
 
 ---
 
@@ -663,5 +664,130 @@ done
 
 ---
 
-**최종 업데이트**: 2025-11-15
-**버전**: 1.0.0
+## 9. Tool Not Found 오류
+
+### 9.1 serverNamespace 설정으로 인한 도구 경로 오류
+
+**증상**:
+```
+Error: MCP error -32603: tool not found: server-name.tool_name
+```
+
+**예시**:
+```
+tool not found: codex-qwen-gemini.gemini_analyze_text
+tool not found: knowledge-base.kb_document_create
+tool not found: your-server.your_tool
+```
+
+**원인**:
+
+lazy-mcp-proxy의 `serverNamespace` 옵션이 `true`(기본값)로 설정되어 도구 이름에 서버 이름이 prefix로 추가됩니다.
+
+```
+MCP 서버 도구: gemini_analyze_text
+↓ (serverNamespace: true)
+Claude가 받는 이름: server-name.gemini_analyze_text
+↓
+Skills 예상: gemini_analyze_text
+→ 결과: tool not found ❌
+```
+
+**해결 방법**:
+
+#### 빠른 수정 (자동 스크립트)
+
+```bash
+# fix-namespace.sh 스크립트 실행
+cd ~/mcp-skills-deployment
+./scripts/fix-namespace.sh
+
+# Claude Code 재시작 필수
+```
+
+#### 수동 수정
+
+**1단계: config.json 수정**
+```bash
+nano ~/lazy-mcp/config.json
+```
+
+**2단계: serverNamespace 설정 추가**
+```json
+{
+  "mcpProxy": {
+    "options": {
+      "lazyLoad": true,
+      "serverNamespace": false,  ← 추가
+      "toolPrefix": ""            ← 추가
+    }
+  }
+}
+```
+
+**3단계: lazy-mcp-proxy 재시작**
+```bash
+# 기존 프로세스 중지
+pkill -f mcp-proxy
+
+# 재시작
+~/lazy-mcp/build/mcp-proxy --config ~/lazy-mcp/config.json &
+```
+
+**4단계: Claude Code 재시작**
+
+Claude Code를 완전히 종료 후 재시작해야 설정이 적용됩니다.
+
+#### 검증
+
+```bash
+# 1. 설정 확인
+cat ~/lazy-mcp/config.json | grep serverNamespace
+# 출력: "serverNamespace": false
+
+# 2. proxy 실행 확인
+ps aux | grep mcp-proxy
+```
+
+**Claude Code에서 테스트**:
+```
+"Analyze this text for sentiment"
+```
+
+예상 결과:
+- ✅ Skills 정상 작동
+- ✅ 도구 호출 성공
+- ✅ 오류 없음
+
+### 9.2 임시 해결책 (Skills 사용)
+
+설정을 변경할 수 없는 경우, Skills를 통한 간접 호출을 사용하세요:
+
+```
+❌ 작동하지 않음:
+Use tool server-name.tool_name with...
+
+✅ 작동함:
+"Analyze this text for sentiment"
+→ Skills가 자동으로 올바른 도구 선택
+```
+
+### 9.3 serverNamespace가 필요한 경우
+
+여러 MCP 서버에서 같은 이름의 도구를 제공하는 경우:
+
+```
+Server A: search_documents
+Server B: search_documents
+
+→ 충돌 발생
+```
+
+이 경우 `serverNamespace: true`가 유용하지만, Skills 사용이 제한될 수 있습니다.
+
+**해결**: 각 서버의 도구 이름을 고유하게 변경하거나, 특정 서버만 namespace 사용
+
+---
+
+**최종 업데이트**: 2025-11-17
+**버전**: 1.1.0

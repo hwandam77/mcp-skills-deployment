@@ -2,7 +2,9 @@
   "mcpProxy": {
     "hierarchyPath": "/path/to/lazy-mcp/testdata/mcp_hierarchy",
     "options": {
-      "lazyLoad": true
+      "lazyLoad": true,
+      "serverNamespace": false,
+      "toolPrefix": ""
     }
   },
   "mcpServers": {
